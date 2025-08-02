@@ -33,6 +33,10 @@
 
 This document outlines the architectural journey and technical decision-making process during the development of the SpamGuard project. The goal was to build an adaptive spam filter that combined a fast, classical machine learning model with a modern, powerful vector database for deep semantic analysis.
 
+To run SpamGuard, in one terminal: cd backend, then uvicorn main:app --reload, and in a new terminal: cd dashboard, then streamlit run app.py
+
+If there is any model-related issue, consider deleting the models dir, then retraining using python train_nb.py
+
 V2 of SpamGuard using MultinomialNB + TFidVectorizer + SMOTE & K-NN, here: https://github.com/alberttrann/SpamGuardv2
 
 ### I. Initial Architecture (V1): A Hybrid of Naive Bayes and Vector Search
