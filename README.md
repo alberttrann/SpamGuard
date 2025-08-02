@@ -33,7 +33,7 @@
 
 This document outlines the architectural journey and technical decision-making process during the development of the SpamGuard project. The goal was to build an adaptive spam filter that combined a fast, classical machine learning model with a modern, powerful vector database for deep semantic analysis.
 
-V2 of SpamGuard using MultinomialNB + TFidVectorizer + SMOTE & K-NN, here: https://github.com/alberttrann/SpamGuard2/tree/main
+V2 of SpamGuard using MultinomialNB + TFidVectorizer + SMOTE & K-NN, here: https://github.com/alberttrann/SpamGuardv2
 
 ### I. Initial Architecture (V1): A Hybrid of Naive Bayes and Vector Search
 
@@ -642,4 +642,4 @@ The final, superior architecture incorporates the right tool for the job, making
 
 This architectural evolution from a flawed `GaussianNB` implementation to a correctly specified `MultinomialNB` pipeline represents the key learning of this project. It highlights the critical importance of selecting a model whose mathematical assumptions align with the intrinsic properties of the data, a principle that proved to be even more impactful than mitigating data imbalance alone.
 
-Link to the V2 SpamGuard: https://github.com/alberttrann/SpamGuard2/tree/main
+Link to the V2 SpamGuard: https://github.com/alberttrann/SpamGuardv2
