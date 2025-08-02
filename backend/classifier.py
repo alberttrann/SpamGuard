@@ -125,28 +125,25 @@ class SpamGuardClassifier:
         features_nb = np.array(features_nb).reshape(1, -1)
         
         nb_probabilities = self.nb_model.predict_proba(features_nb)[0]
-        # Find the index for 'spam' to get its probability
         spam_class_index = np.where(self.label_encoder.classes_ == 'spam')[0][0]
         spam_prob = nb_probabilities[spam_class_index]
 
         # Triage thresholds: if NB is very confident, we trust it.
-        # Note: These thresholds can be tuned for performance.
         if spam_prob < 0.1:
             return {"prediction": "ham", "confidence": 1 - spam_prob, "model": "Naive Bayes", "evidence": None}
         if spam_prob > 0.9:
             return {"prediction": "spam", "confidence": spam_prob, "model": "Naive Bayes", "evidence": None}
 
         # --- Stage 2: Deep Analysis with Vector Search for ambiguous cases ---
-        k = 5 # Number of nearest neighbors to consider
-        query_embedding = self._get_embeddings([text], "query").astype('float32') # Process as a list
+        k = 5 
+        query_embedding = self._get_embeddings([text], "query").astype('float32') 
         scores, indices = self.faiss_index.search(query_embedding, k)
         
         neighbor_labels = [self.all_labels[i] for i in indices[0]]
         
-        # Majority Vote determines the final prediction
+        # Majority Vote 
         prediction = max(set(neighbor_labels), key=neighbor_labels.count)
         
-        # Confidence is the ratio of the winning class in the neighbors
         confidence = neighbor_labels.count(prediction) / k
 
         # Gather evidence for explainability
