@@ -639,3 +639,5 @@ The final, superior architecture incorporates the right tool for the job, making
     *   This component remains unchanged, but it is now a functional part of the system. The more reliable and less confident probability estimates from `MultinomialNB` now allow the triage stage to correctly identify and escalate ambiguous cases.
 
 This architectural evolution from a flawed `GaussianNB` implementation to a correctly specified `MultinomialNB` pipeline represents the key learning of this project. It highlights the critical importance of selecting a model whose mathematical assumptions align with the intrinsic properties of the data, a principle that proved to be even more impactful than mitigating data imbalance alone.
+
+Link to the V2 SpamGuard: https://github.com/alberttrann/SpamGuard2/tree/main
